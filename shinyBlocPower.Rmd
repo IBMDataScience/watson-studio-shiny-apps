@@ -89,14 +89,14 @@ df$billValues <- gsub('\\$','', df$Annual.Energy.Bill..USD.)
 df$billValues <- gsub(',','', df$billValues)
 df$billValues <- as.numeric(gsub(' ','', df$billValues))
 
-dat <- getURL('https://raw.githubusercontent.com/IBMDataScience/SparkSummitDemo/master/data/CombinedSensorData.csv')
-allSensors <- read.csv(text = dat)
+#dat <- getURL('https://raw.githubusercontent.com/IBMDataScience/SparkSummitDemo/master/data/CombinedSensorData.csv')
+#allSensors <- read.csv(text = dat)
 
-allSensors$Unitarian.s <- as.POSIXct(allSensors$Unitarian.s,format='%m/%d/%Y %H:%M')
-temps <- data.frame(allSensors$Unitarian.s, allSensors$Unitarian.t, allSensors$Parish.t, allSensors$Basement.t,allSensors$Office.t)
-colnames(temps) <- c('Time','SanctuaryTemp','ParishTemp','BasementTemp','OfficeTemp')
-t<- temps[,-1]
-allTemps <- xts(t,order.by = temps$Time)
+#allSensors$Unitarian.s <- as.POSIXct(allSensors$Unitarian.s,format='%m/%d/%Y %H:%M')
+#temps <- data.frame(allSensors$Unitarian.s, allSensors$Unitarian.t, allSensors$Parish.t, allSensors$Basement.t,allSensors$Office.t)
+#colnames(temps) <- c('Time','SanctuaryTemp','ParishTemp','BasementTemp','OfficeTemp')
+#t<- temps[,-1]
+#allTemps <- xts(t,order.by = temps$Time)
 
 #function used for scoring
 scoreProperty <- function(num_stories,sq_feet, num_plugged_equipment){
@@ -128,7 +128,7 @@ bplogo <- "https://raw.githubusercontent.com/IBMDataScience/SparkSummitDemo/mast
 Row {data-height=200}
 -----------------------------------------------------------------------
 
-### ![blocpower](`r bplogo`) Build a Better World.  Develop green energy projects in American inner cities.
+### ![blocpower](`r bplogo`) Build a Better World. Develop green energy projects in American inner cities.
 
 ```{r}
 renderValueBox({
@@ -269,20 +269,6 @@ plotlyOutput('bars')
 ```
 
 
-Row {data-height=300}
------------------------------------------------------------------------
-
-
-### Sensor Temperature Data - Different Building Locations
-
-```{r}
-  
-dygraph(allTemps)
-
-
-```
-
-
 Cluster Analysis
 =====================================
 
@@ -414,23 +400,6 @@ Row
 ly_points(Measured ,Predicted, data = df,fill_color = color, fill_alpha=0.6,hover = c(property_name, ReClustering), xlab='Measured Energy Usage', ylab='Predicted Energy Usage') 
 p3<- ly_abline(p3,a=0, b=1, color='blue')
 p3
-
-
-```
-
-Data Table
-=====================================
-
-
-Column 
------------------------------------------------------------------------
-
-### Raw Data Table
-
-```{r}
-
-  kable(df)
-
 
 
 ```
