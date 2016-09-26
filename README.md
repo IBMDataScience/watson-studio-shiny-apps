@@ -18,6 +18,8 @@ This shiny app shows how the IBM Data Science Experience offering was leveraged 
 
 # Deep Learning:
 
+This shiny app shows how ...
+
 # Health Care:
 
 # More to Come....
