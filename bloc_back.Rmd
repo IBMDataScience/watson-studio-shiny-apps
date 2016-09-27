@@ -1,11 +1,11 @@
 ---
-title: "BlocPower IBM Data Science Experience"
+title: "IBM Data Science Experience"
 runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
     vertical_layout: fill
-    source_code: https://github.com/IBMDataScience/dsx-shiny-apps
+    source_code: https://github.com/IBMDataScience/SparkSummitDemo
     social: [ "twitter", "facebook", "linkedin" ]
 
     
@@ -63,7 +63,8 @@ library(dygraphs)
 library(png)
 library(RCurl)
 
-setwd('~/') 
+#setwd('/srv/shiny-server/shinyDemo')
+setwd('~/')#home 
 
 datdf <- getURL('https://raw.githubusercontent.com/IBMDataScience/SparkSummitDemo/master/data/clusterEnergyLocation.csv')
 df <- read.csv(text = datdf)
@@ -87,6 +88,15 @@ df$EnergySurplus <- round(((1*(df$plugChg + df$acChg + df$domesticChg + df$heati
 df$billValues <- gsub('\\$','', df$Annual.Energy.Bill..USD.)
 df$billValues <- gsub(',','', df$billValues)
 df$billValues <- as.numeric(gsub(' ','', df$billValues))
+
+#dat <- getURL('https://raw.githubusercontent.com/IBMDataScience/SparkSummitDemo/master/data/CombinedSensorData.csv')
+#allSensors <- read.csv(text = dat)
+
+#allSensors$Unitarian.s <- as.POSIXct(allSensors$Unitarian.s,format='%m/%d/%Y %H:%M')
+#temps <- data.frame(allSensors$Unitarian.s, allSensors$Unitarian.t, allSensors$Parish.t, allSensors$Basement.t,allSensors$Office.t)
+#colnames(temps) <- c('Time','SanctuaryTemp','ParishTemp','BasementTemp','OfficeTemp')
+#t<- temps[,-1]
+#allTemps <- xts(t,order.by = temps$Time)
 
 #function used for scoring
 scoreProperty <- function(num_stories,sq_feet, num_plugged_equipment){
@@ -118,10 +128,11 @@ bplogo <- "https://raw.githubusercontent.com/IBMDataScience/SparkSummitDemo/mast
 Row {data-height=200}
 -----------------------------------------------------------------------
 
-### ![blocpower](`r bplogo`) Develop green energy projects.
+### ![blocpower](`r bplogo`) Build a Better World. Develop green energy projects in American inner cities.
 
 ```{r}
 renderValueBox({
+  
   valueBox(value = '', icon = "")
 })
 
@@ -137,6 +148,19 @@ renderValueBox({
   valueBox(value = bill$Annual.Energy.Bill..USD., icon = "glyphicon-usd")
 })
 ```
+
+### Average Energy Compared to Benchmark
+
+```{r}
+renderValueBox({
+  energyUse <- prop_data()$EnergySurplus
+  valueBox(value = paste0(energyUse,'%'), 
+           icon = "glyphicon-tree-deciduous",
+           color =   ifelse(energyUse < 0, "danger", "success")
+           )
+})
+```
+
 
 
 Row {data-height=600}
@@ -170,6 +194,8 @@ output$map <- renderLeaflet({
       addLegend(position = "bottomright",na.label = "NA", title="Annual Energy Cost",colors=c('#FFFFD9','#99D6B9','#2280B8','#081D58'), labels = c('< $2,000','$2,000 - $4,000','$4,001- $6,000','$6,000 +'))
     map2
 })
+
+
 
 prop_data <- reactive({
   
@@ -243,6 +269,60 @@ plotlyOutput('bars')
 ```
 
 
+Cluster Analysis
+=====================================
+
+
+Row
+-----------------------------------------------------------------------
+
+### Energy Consumption Map
+
+```{r}
+
+
+# qualPalette <- c("#d7191c", "#fdae61", "#a6d96a", "#1a9641")
+# clusterLabels <- seq(1:4)
+# df$color <- qualPalette[match(df$kmeans_label, clusterLabels)]
+# qpal2 <- colorFactor(palette=qualPalette, df$kmeans_label)
+
+qualPalette <- c("#1a9641","#d7191c")
+clusterLabels <- seq(1:2)
+df$color <- qualPalette[match(df$ReClustering, clusterLabels)]
+qpal2 <- colorFactor(palette=qualPalette, df$ReClustering)
+
+
+  map2 <- leaflet(data = df) %>% 
+    
+  addProviderTiles("CartoDB.Positron")%>% 
+  addCircleMarkers(
+    lng = df$Long,
+    lat = df$Lat,
+    radius = 6,
+    color = ~qpal2(df$ReClustering),
+    stroke = F, fillOpacity = 0.7,
+    popup = ~property_name)
+
+addLegend(map2,position = "bottomright", colors=qualPalette,labels=c("Efficient","Inefficient"),na.label = "NA", title="Cluster Labels", opacity =0.7)
+map2  
+
+
+```
+
+### Clusters by Heating and Plug Consumption
+
+```{r}
+
+p2 <- figure() %>%
+  ly_points(heating_gas*100, plug_load_consumption*100, data = df,fill_color =color,fill_alpha = 0.6, hover = c(property_name,Annual.Energy.Bill..USD. ),legend_location = "top_right", xlab='Heating Gas', ylab = 'Plug Load Consumption') %>% 
+y_axis(number_formatter = "printf", format = "%d%%") %>% 
+x_axis(number_formatter = "printf", format = "%d%%")
+p2
+
+
+
+```
+
 Predictive Model
 =====================================
 
@@ -255,16 +335,16 @@ Row  {.sidebar data-width=400}
 
 #coefficient 1 - Stories
 sliderInput("stories", "Enter number of Stories:",
-            min = 1, max = 4, value = 1, step = 1
+            min = 0, max = 4, value = 1, step = 1
 )
 #coefficient 2 - Sq. Foot
 sliderInput("sqft", "Enter Property Square Footage:",
-            min = 100, max = 65000, value = 20000, step = 100
+            min = 0, max = 65000, value = 20000, step = 100
 )
 
 #coefficient 3 - # of Plugged Outlets
 sliderInput("plugged", "Enter Number of Plugged Outlets:",
-            min = 10, max = 43, value = 29, step = 1
+            min = 0, max = 43, value = 29, step = 1
 )
 
 
@@ -280,17 +360,14 @@ score <- reactive({
 Row {data-height=200}
 -----------------------------------------------------------------------
 
-### Predicted Annual Energy Bill (USD)
+
+
+### Predicted Annual Energy Bill (USD @ $0.18/kWh)
 
 ```{r}
-
-qualPalette <- c("#1a9641","#d7191c")
-clusterLabels <- seq(1:2)
-df$color <- qualPalette[match(df$ReClustering, clusterLabels)]
-
 renderGauge({
   bill<- score()[2]
-  gauge(bill, min = 100, max = 100000, symbol = '$', gaugeSectors(
+  gauge(bill, min = 0, max = 100000, symbol = '$', gaugeSectors(
   success = c(0, 2000), warning = c(2001, 15000), danger = c(15001, 100000)))
   
 })
@@ -303,7 +380,7 @@ renderGauge({
 
 renderGauge({
   kwh <- score()[1]
-  gauge(kwh, min = 100, max = 380400, gaugeSectors(
+  gauge(kwh, min = 0, max = 380400, gaugeSectors(
  success = c(0, 100000), warning = c(100001,200000), danger = c(200001,400000)))
   
 })
@@ -318,7 +395,7 @@ Row
 ### Accuracy of Linear Regression Fit
 
 ```{r}
-df$color <- qualPalette[match(df$ReClustering, clusterLabels)]
+
  p3 <- figure() %>%
 ly_points(Measured ,Predicted, data = df,fill_color = color, fill_alpha=0.6,hover = c(property_name, ReClustering), xlab='Measured Energy Usage', ylab='Predicted Energy Usage') 
 p3<- ly_abline(p3,a=0, b=1, color='blue')
