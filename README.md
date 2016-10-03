@@ -1,4 +1,4 @@
-# dsx-shiny-apps
+# Shiny apps in the IBM data science experience
 
 Shiny Apps for datascience.ibm.com
 
