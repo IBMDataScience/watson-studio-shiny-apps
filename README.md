@@ -2,7 +2,7 @@
 
 Shiny Apps for datascience.ibm.com
 
-## Predictive model results for car accident in NYC based on weather:
+## Predictions of car accident in NYC based on weather data:
 
 This shiny app shows how the IBM Data Science Experience was leveraged to show the results of a car accident predictive model in New York City. The model was trained using historical data of car accidents and IBM weather's data. The weather conditions per zip code were used as features to train a logistic regression model that predicts the probability of a car accident at the zip code level. 
 
