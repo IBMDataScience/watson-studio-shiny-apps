@@ -9,7 +9,7 @@ This shiny app shows how the IBM Data Science Experience was leveraged to show t
 ###### Running the Shiny App
 - Download [the predict-accidents zip file](https://github.com/IBMDataScience/dsx-shiny-apps/blob/master/predict-accidents.zip) to your laptop
 - Open RStudio in [Data Science Experience](http://datascience.ibm.com/) from the left navigation bar 
-- On the bottom left part of RStudio, under "Files", click on the "Upload" option
+- On the bottom right part of RStudio, under "Files", click on the "Upload" option
 - Click on "Choose File" and browse for the "predict-accidents.zip" on your laptop (dowloaded on the first step)
 - Click on the "predict-accidents" directory
 - Open the server.R file by clicking on it
