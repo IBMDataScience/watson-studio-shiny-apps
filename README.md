@@ -35,3 +35,7 @@ This shiny app shows how the IBM Data Science Experience offering was leveraged 
 - Click the Knit button with the ball of yarn next to it
 - Ignore the error on the pop-up and click the button "Open in Browser" to see the app in a web browser
 - Open the app in a browser to interact with it, share the link with anyone
+
+For questions, please contact 
+- Greg Filla, gfilla@us.ibm.com
+- Jorge Castanon, jorgecasta@us.ibm.com
