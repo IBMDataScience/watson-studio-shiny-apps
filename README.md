@@ -22,6 +22,28 @@ For questions, please contact
 - Shahab Sheikh, ssheikhb@us.ibm.com
 - Jihyoung Kim, jihyoungkim@us.ibm.com
 
+## Analyzing flight delays:
+
+This shiny app shows how the IBM Data Science Experience was leveraged to show an interactive map to analyze flight delays. The app can be used to explore the average flight delays (in minutes) for each airport. The user can interact with the app by choosing the month and year to be explored. In addition, the user can click on airport to get the airport name, code, state and city. The size of the circles depends on the volume of flights for each airport. 
+
+
+###### Running the Shiny App
+- Download the flights [zip file](https://github.com/IBMDataScience/dsx-shiny-apps/blob/master/flights.zip) to your laptop (no need to unzip!)
+- Open RStudio in [Data Science Experience](http://datascience.ibm.com/) from the left navigation bar 
+- On the bottom right panel of RStudio, under "Files", click on the "Upload" option
+- Click on "Choose File" and browse for the "flights.zip" on your laptop (dowloaded on the first step)
+- Click on the "flights" directory
+- Open the server.R file by clicking on it in RStudio
+- On the top left panel, open the shiny app by clicking on the "Run App" button
+
+You should get a really cool map that shows the average flight delay (in minutes) for each airport. On the right panel of the app you can interact with the app by choosing the desired year and month of interest. Click on the circles to get the airport name and code, as well as the average delay of arriving flights.
+
+For questions, please contact 
+- Jorge Castanon, jorgecasta@us.ibm.com
+- Oscar Lara, oscar.lara.yejas@us.ibm.com
+- Shahab Sheikh, ssheikhb@us.ibm.com
+- Jihyoung Kim, jihyoungkim@us.ibm.com
+
 ## Blocpower:
 
 This shiny app shows how the IBM Data Science Experience offering was leveraged to model and understand energy usage within under-served communities in NYC. Come see how these models led to previously undiscovered insight that helped energy analysts better target their clean energy project offers among  the communities involved.
