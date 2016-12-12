@@ -19,7 +19,6 @@ You should get a really cool map that shows the probabilities of car accidents p
 
 For questions, please contact 
 - Jorge Castanon, jorgecasta@us.ibm.com
-- Shahab Sheikh, ssheikhb@us.ibm.com
 - Jihyoung Kim, jihyoungkim@us.ibm.com
 
 ## Analyzing flight delays:
@@ -41,7 +40,6 @@ You should get a really cool map that shows the average flight delay (in minutes
 For questions, please contact 
 - Jorge Castanon, jorgecasta@us.ibm.com
 - Oscar Lara, oscar.lara.yejas@us.ibm.com
-- Shahab Sheikh, ssheikhb@us.ibm.com
 - Jihyoung Kim, jihyoungkim@us.ibm.com
 
 ## Blocpower:
@@ -59,5 +57,6 @@ This shiny app shows how the IBM Data Science Experience offering was leveraged 
 - Open the app in a browser to interact with it, share the link with anyone
 
 For questions, please contact 
-- Greg Filla, gfilla@us.ibm.com
 - Jorge Castanon, jorgecasta@us.ibm.com
+- Greg Filla, gfilla@us.ibm.com
+
