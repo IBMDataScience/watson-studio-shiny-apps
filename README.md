@@ -9,11 +9,11 @@ This shiny app shows how the IBM Data Science Experience was leveraged to show t
 ###### Running the Shiny App
 - Download the predict-accidents [zip file](https://github.com/IBMDataScience/dsx-shiny-apps/blob/master/predict-accidents.zip) to your laptop (no need to unzip!)
 - Open RStudio in [Data Science Experience](http://datascience.ibm.com/) from the left navigation bar 
-- On the bottom right panel of RStudio, under "Files", click on the "Upload" option
-- Click on "Choose File" and browse for the "predict-accidents.zip" on your laptop (dowloaded on the first step)
-- Click on the "predict-accidents" directory
-- Open the server.R file by clicking on it in RStudio
-- On the top left panel, open the shiny app by clicking on the "Run App" button
+- On the bottom right panel of RStudio, under `Files`, click on the `Upload` option
+- Click on `Choose File` and browse for the "predict-accidents.zip" on your laptop (downloaded on the first step)
+- Click on the `predict-accidents` directory
+- Open the `server.R` file by clicking on it in RStudio
+- On the top left panel, open the shiny app by clicking on the `Run App` button
 
 You should get a really cool map that shows the probabilities of car accidents per zip code. On the right panel of the app you can interact with the app by choosing the desired date and time of interest. Click on the circles to get the zip code and the probability.
 
@@ -29,11 +29,11 @@ This shiny app shows how the IBM Data Science Experience was leveraged to show a
 ###### Running the Shiny App
 - Download the flights [zip file](https://github.com/IBMDataScience/dsx-shiny-apps/blob/master/flights.zip) to your laptop (no need to unzip!)
 - Open RStudio in [Data Science Experience](http://datascience.ibm.com/) from the left navigation bar 
-- On the bottom right panel of RStudio, under "Files", click on the "Upload" option
-- Click on "Choose File" and browse for the "flights.zip" on your laptop (dowloaded on the first step)
-- Click on the "flights" directory
-- Open the server.R file by clicking on it in RStudio
-- On the top left panel, open the shiny app by clicking on the "Run App" button
+- On the bottom right panel of RStudio, under `Files`, click on the `Upload` option
+- Click on "Choose File" and browse for the `flights.zip` on your laptop (dowloaded on the first step)
+- Click on the `flights` directory
+- Open the `server.R` file by clicking on it in RStudio
+- On the top left panel, open the shiny app by clicking on the `Run App` button
 
 You should get a really cool map that shows the average flight delay (in minutes) for each airport. On the right panel of the app you can interact with the app by choosing the desired year and month of interest. Click on the circles to get the airport name and code, as well as the average delay of arriving flights.
 
@@ -53,7 +53,7 @@ This shiny app shows how the IBM Data Science Experience offering was leveraged 
 - Replace the default content in the new R Markdown file by pasting the code in the file
 - Select lines 21 - 65 and execute (This is a one time set up to install all necessary packages)
 - Click the Knit button with the ball of yarn next to it
-- Ignore the error on the pop-up and click the button "Open in Browser" to see the app in a web browser
+- Ignore the error on the pop-up and click the button `Open in Browser` to see the app in a web browser
 - Open the app in a browser to interact with it, share the link with anyone
 
 For questions, please contact 
