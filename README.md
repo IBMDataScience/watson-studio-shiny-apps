@@ -4,7 +4,7 @@ Shiny Apps for ibm.com/cloud/watson-studio
 
 ## Predictions of car accident in NYC based on weather data:
 
-This shiny app shows how the IBM Watson Studio was leveraged to show the results of a car accident predictive model in New York City. The model was trained using historical data of car accidents and IBM's weather data. The weather conditions per zip code were used as features to train a logistic regression model, using Spark, that predicts the probability of a car accident at the zip code level. 
+This shiny app shows how the IBM Watson Studio was leveraged to show the results of a car accident predictive model in New York City. The model was trained using historical data of car accidents and IBM's weather data. The weather conditions per zip code were used as features to train a logistic regression model, using Spark, that predicts the probability of a car accident at the zip code level, at an specific date and time of the day. 
 
 ###### Running the Shiny App
 - Download the predict-accidents [zip file](https://github.com/IBMDataScience/watson-studio-shiny-apps/blob/master/predict-accidents.zip) to your laptop (no need to unzip!)
